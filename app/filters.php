@@ -44,6 +44,28 @@ Route::filter('auth.basic', function()
 	return Auth::basic();
 });
 
+Route::filter('admin', function ()
+{
+    return GroupController::inGroup('admin'); 
+});
+
+Route::filter('moderator', function ()
+{
+    return GroupController::inGroup(array('admin','moderator')); 
+});
+
+Route::filter('topSecret', function ()
+{
+    if(GroupController::inGroup('admin') and Session::get('isTopSecret') and time() <= Session::get('topSecretExpires')) {
+        return true;
+    }
+    else {
+        Session::forget('isTopSecret');
+        Session::forget('topSecretExpires');
+        return false;
+    }
+});
+
 /*
 |--------------------------------------------------------------------------
 | Guest Filter

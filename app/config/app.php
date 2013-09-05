@@ -116,7 +116,6 @@ return array(
 		'Illuminate\Workbench\WorkbenchServiceProvider',
         'Way\Generators\GeneratorsServiceProvider',
         'Way\Console\GuardLaravelServiceProvider',
-        "Caouecs\Gumby2\Gumby2ServiceProvider"
 
 	),
 
@@ -182,16 +181,6 @@ return array(
 		'URL'             => 'Illuminate\Support\Facades\URL',
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
 		'View'            => 'Illuminate\Support\Facades\View',
-        'Alert'           => 'Caouecs\Gumby2\Alert',
-        'Badge'           => 'Caouecs\Gumby2\Badge',
-        'Breadcrumb'      => 'Caouecs\Gumby2\Breadcrumb',
-        'Button'          => 'Caouecs\Gumby2\Button',
-        'Icon'            => 'Caouecs\Gumby2\Icon',
-        'Image'           => 'Caouecs\Gumby2\Image',
-        'Label'           => 'Caouecs\Gumby2\Label',
-        'Tabs'            => 'Caouecs\Gumby2\Tabs',
-        'Typography'      => 'Caouecs\Gumby2\Typography',
-        'Valign'          => 'Caouecs\Gumby2\Valign'
 
 	),
 

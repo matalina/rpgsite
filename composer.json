@@ -8,7 +8,6 @@
         "way/generators": "dev-master",
         "laravelbook/ardent": "dev-master",
         "robertlemke/rss": "dev-master",
-        "caouecs/gumby2": "dev-master",
         "dflydev/markdown": "1.0.*@dev"
 	},
     "require-dev": {
