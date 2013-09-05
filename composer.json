@@ -4,8 +4,16 @@
 	"keywords": ["framework", "laravel"],
 	"require": {
 		"laravel/framework": "4.0.*",
-		"fideloper/proxy": "dev-master"
+		"fideloper/proxy": "dev-master",
+        "way/generators": "dev-master",
+        "laravelbook/ardent": "dev-master",
+        "robertlemke/rss": "dev-master",
+        "caouecs/gumby2": "dev-master",
+        "dflydev/markdown": "1.0.*@dev"
 	},
+    "require-dev": {
+        "way/guard-laravel": "dev-master"
+    },
 	"autoload": {
 		"classmap": [
 			"app/commands",
