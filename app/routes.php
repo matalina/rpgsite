@@ -46,8 +46,12 @@ Route::post('search','SearchController@search');
 Route::group(array('before' => 'auth'), function()
 {
     // Create New Character
-    Route::get('character/new', 'CharacterController@newChar');
+    Route::get('character/new', 'CharacterController@character');
     Route::post('character/new', 'CharacterController@createChar');
+    
+    // Edit Character
+    Route::get('character/{id}','CharacterController@editCharacter');
+    Route::post('/character','CharacterController@updateCharacter');
     
     // View Profile
     Route::get('profile/{username?}', 'UserController@profile');
@@ -79,40 +83,63 @@ Route::group(array('before' => 'auth'), function()
     Route::post('message/new','MessageController@sendMessage');
     
 });
+
 // Moderator Pages
 Route::group(array('before' => 'moderator'), function()
 {
     // View All Characters
+    Route::get('admin/characters/{page?}','CharacterController@index');
     
     // Edit Character
+    Route::get('admin/character/{id}','CharacterController@editCharacter');
+    Route::post('admin/character','CharacterController@updateCharacter');
     
     // Approve Characters
+    Route::get('admin/character/delete/{id}','CharacterController@delete');
 });
 
 // Admin Pages
 Route::group(array('before' => 'admin'), function()
 {
     // View All Pages
+    Route::get('admin/pages/{page?}', 'PageController@index');
     
     // New Pages
+    Route::get('admin/page/new', 'PageController@page');
+    Route::post('admin/page/new', 'PageController@createPage');
     
     // Edit Pages
+    Route::get('admin/page/{id}', 'PageController@editPage');
+    Route::post('admin/page', 'PageController@updatePage');
     
     // Delete Page
+    Route::get('admin/page/delete/{id}', 'PageController@deletePage');
     
     // Menu Setup
+    Route::get('admin/menu','MenuController@index');
+    Route::post('admin/menu', 'MenuController@updateMenu');
     
     // View All Blog Posts
+    Route::get('admin/blog/{page?}', 'BlogController@index');
     
     // New Blog Post
+    Route::get('admin/blog/new', 'BlogController@post');
+    Route::post('admin/blog/new', 'BlogController@createPost');
     
     // Edit Blog Post
+    Route::get('admin/blog/{id}', 'BlogController@editPost');
+    Route::post('admin/blog', 'BlogController@updatePost');
     
     // Delete Blog Post
+    Route::get('admin/blog/delete/{id}', 'BlogController@deletePost');
     
     // View All Categories
+    Route::get('admin/category','CategoryController@index');
+    Route::post('admin/category','CategoryController@order');
     
     // New Category
+    Route::get('admin/category/new','CategoryController@category');
+    Route::post('admin/category/new','CategoryController@createCategory');
     
     // Edit Category
     
@@ -146,7 +173,7 @@ Route::group(array('before' => 'admin'), function()
     
     // Go to Top Secret Area
     Route::get('admin/top-secret','MessageController@topSecretForm');
-    Route::post('admin/top-secret','MessageController@saveKey');
+    Route::post('admin/top-secret','MessageController@verifyKey');
     
 });
 
