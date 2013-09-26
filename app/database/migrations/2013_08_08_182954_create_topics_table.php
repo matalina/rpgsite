@@ -39,7 +39,7 @@ class CreateTopicsTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('topics');
+		Schema::drop('topic');
 	}
 
 }

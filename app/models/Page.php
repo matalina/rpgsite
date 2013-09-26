@@ -30,4 +30,17 @@ class Page extends Ardent
     {
         return $this->hasMany('Page','parent_id');
     }
+    
+    public function getDisplayAttribute()
+    {
+        $parser = new \dflydev\markdown\MarkdownExtraParser();
+        return $parser->transformMarkdown($this->attributes['entry']);
+    }
+    
+    public function getFirstAttribute()
+    {
+        $content = $this->attributes['display'];
+        return words(strip_tags($content),50,'&helip;');
+        
+    }
 }

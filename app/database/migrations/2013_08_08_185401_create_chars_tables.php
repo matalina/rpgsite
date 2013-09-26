@@ -39,7 +39,7 @@ class CreateCharsTables extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('chars_tables');
+		Schema::drop('chars');
 	}
 
 }

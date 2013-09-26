@@ -1,79 +1,43 @@
-<?php
-
+<?php 
 class PageController extends \BaseController {
-
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
-	public function index()
+    /**
+     * Show Public Pages
+     * 
+     * @access public
+     * @param string $slug
+     * @return Response
+     */
+	public function show($slug = 'home')
 	{
-		//
+	    $page = Matalina\Rpg\Models\Page::where('slug', '=', $slug)->first();
+	    
+	    if($page == NULL) {
+	        App::abort(404, 'Page not found');
+	    }
+	    
+	    if($slug == 'home') {
+	        $title = $this->site_name;
+	        $description = Matalina\Rpg\Models\Config::where('name', '=', 'site-description')->first()->value;
+	    }
+	    else {
+	        $title = $page->title.' | '.$this->site_name;
+	        $description = $page->first;
+	    }
+	    $content = $page->display;
+	    
+	    return View::make('page.page')->with(compact('title', 'description', 'content'));
 	}
-
 	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
+     * Admin View of all pages
+     * 
+     * @access public
+     * @param string $slug
+     * @return Response
+     */
+	public function index($page = 1)
 	{
-		//
-	}
-
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		//
-	}
-
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
-	}
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
-
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
+	    //$pages = Matalina\Rpg\Models\Page::get()->limit(Matalina\Rpg\Models\Config::get('name', '=', 'admin-limit'));
+	    //dd($pages);
 	}
 
 }

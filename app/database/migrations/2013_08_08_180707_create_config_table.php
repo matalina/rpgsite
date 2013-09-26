@@ -16,6 +16,7 @@ class CreateConfigTable extends Migration {
 			$table->increments('id');
 			$table->string('name',25)->unique();
             $table->string('description');
+            $table->string('type'); // valid types: string, number, boolean
 			$table->text('value');
 			$table->timestamps();
 		});
